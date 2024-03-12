@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DoctorUpdateRequest {
     @Positive
-    private int id;
+    private Long id;
     private String name;
     private String phone;
     private String mail;

@@ -1,5 +1,7 @@
 package com.emre.vetproject.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,16 +17,18 @@ import java.util.List;
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    String name;
-    String species;
-    String breed;
-    String gender;
-    String colour;
-    LocalDate dateOfBirth;
+    private Long id;
+    private String name;
+    private String species;
+    private String breed;
+    private String gender;
+    private String colour;
+    private LocalDate dateOfBirth;
     @ManyToOne()
     @JoinColumn(name = "animal_customer_id")
-    Customer customer;
-    @OneToMany(mappedBy = "animal")
-    List<Vaccine> vaccine;
+    @JsonManagedReference
+    private Customer customer;
+    @OneToMany(mappedBy = "animal", cascade = CascadeType.REMOVE)
+    @JsonBackReference
+    private List<Vaccine> vaccine;
 }

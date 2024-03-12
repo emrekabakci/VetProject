@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class AnimalUpdateRequest {
     @NotNull
     @Positive
-    private int id;
+    private Long id;
     @NotNull(message = "isim boş bırakılamaz!")
     private String name;
     @NotNull(message = "tür boş bırakılamaz!")

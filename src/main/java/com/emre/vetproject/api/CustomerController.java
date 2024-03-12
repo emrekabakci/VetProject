@@ -74,7 +74,7 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.OK)
     public Result delete(@PathVariable("id") int id) {
         this.customerService.delete(id);
-       return ResultGen.ok();
+        return ResultGen.ok();
     }
 
     @GetMapping("/{customerId}/animals")

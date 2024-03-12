@@ -5,7 +5,6 @@ import com.emre.vetproject.core.exception.NotFoundException;
 import com.emre.vetproject.core.utilities.Message;
 import com.emre.vetproject.dao.IAnimalRepo;
 import com.emre.vetproject.dao.ICustomerRepo;
-import com.emre.vetproject.dto.response.customer.CustomerResponse;
 import com.emre.vetproject.model.Animal;
 import com.emre.vetproject.model.Customer;
 import org.springframework.data.domain.Page;
@@ -28,42 +27,41 @@ public class CustomerManager implements ICustomerService {
 
     @Override
     public Customer save(Customer customer) {
-        return this.customerRepo.save(customer);
+        return customerRepo.save(customer);
     }
 
     @Override
-    public Customer get(int id) {
-        return this.customerRepo.findById(id).orElseThrow(() -> new NotFoundException(Message.NOT_FOUND));
+    public Customer get(long id) {
+        return customerRepo.findById(id).orElseThrow(() -> new NotFoundException(Message.NOT_FOUND));
     }
 
     @Override
     public Page<Customer> cursor(int page, int pageSize) {
         Pageable pageable = PageRequest.of(page, pageSize);
-        return this.customerRepo.findAll(pageable);
+        return customerRepo.findAll(pageable);
     }
 
     @Override
     public Customer update(Customer customer) {
-        this.get(customer.getId());
-        return this.customerRepo.save(customer);
+        return customerRepo.save(customer);
     }
 
     @Override
-    public boolean delete(int id) {
-        Customer customer = this.get(id);
-        this.customerRepo.delete(customer);
+    public boolean delete(long id) {
+        Customer customer = get(id);
+        customerRepo.delete(customer);
         return true;
     }
 
     @Override
-    public List<Animal> getAllAnimalsByCustomer(int customerId) {
+    public List<Animal> getAllAnimalsByCustomer(long customerId) {
         return animalRepo.findByCustomerId(customerId);
     }
 
 
     @Override
     public List<Customer> findCustomersByName(String name) {
-        return this.customerRepo.findCustomersByName(name);
+        return customerRepo.findCustomersByName(name);
     }
 
 

@@ -5,16 +5,11 @@ import com.emre.vetproject.core.config.modelMapper.IModelMapperService;
 import com.emre.vetproject.core.result.Result;
 import com.emre.vetproject.core.result.ResultData;
 import com.emre.vetproject.core.utilities.ResultGen;
-import com.emre.vetproject.dto.request.customer.CustomerSaveRequest;
-import com.emre.vetproject.dto.request.customer.CustomerUpdateRequest;
 import com.emre.vetproject.dto.request.doctor.DoctorSaveRequest;
 import com.emre.vetproject.dto.request.doctor.DoctorUpdateRequest;
-import com.emre.vetproject.dto.response.customer.CustomerResponse;
 import com.emre.vetproject.dto.response.doctor.DoctorResponse;
-import com.emre.vetproject.model.Customer;
 import com.emre.vetproject.model.Doctor;
 import jakarta.validation.Valid;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class VaccineUpdateRequest {
     @Positive
-    private int id;
+    private Long id;
     private String name;
     private String code;
     private LocalDate protectionStartDate;

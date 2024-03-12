@@ -1,11 +1,8 @@
 package com.emre.vetproject.dto.response.customer;
 
-import com.emre.vetproject.model.Animal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Data
 @AllArgsConstructor

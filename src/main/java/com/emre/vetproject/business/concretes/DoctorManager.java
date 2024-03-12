@@ -5,7 +5,6 @@ import com.emre.vetproject.core.exception.NotFoundException;
 import com.emre.vetproject.core.utilities.Message;
 import com.emre.vetproject.dao.IDoctorRepo;
 import com.emre.vetproject.model.Doctor;
-import com.emre.vetproject.model.Vaccine;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,30 +21,30 @@ public class DoctorManager implements IDoctorService {
 
     @Override
     public Doctor save(Doctor doctor) {
-        return this.doctorRepo.save(doctor);
+        return doctorRepo.save(doctor);
     }
 
     @Override
-    public Doctor get(int id) {
-        return this.doctorRepo.findById(id).orElseThrow(() -> new NotFoundException(Message.NOT_FOUND));
+    public Doctor get(long id) {
+        return doctorRepo.findById(id).orElseThrow(() -> new NotFoundException(Message.NOT_FOUND));
     }
 
     @Override
     public Page<Doctor> cursor(int page, int pageSize) {
         Pageable pageable = PageRequest.of(page, pageSize);
-        return this.doctorRepo.findAll(pageable);
+        return doctorRepo.findAll(pageable);
     }
 
     @Override
     public Doctor update(Doctor doctor) {
-        this.get(doctor.getId());
-        return this.doctorRepo.save(doctor);
+        get(doctor.getId());
+        return doctorRepo.save(doctor);
     }
 
     @Override
-    public boolean delete(int id) {
-        Doctor doctor = this.get(id);
-        this.doctorRepo.delete(doctor);
+    public boolean delete(long id) {
+        Doctor doctor = get(id);
+        doctorRepo.delete(doctor);
         return true;
     }
 }

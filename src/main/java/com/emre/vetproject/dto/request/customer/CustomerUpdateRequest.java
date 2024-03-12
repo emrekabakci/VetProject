@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CustomerUpdateRequest {
     @Positive(message = "ID değeri pozitif olmak zorunda!")
-    private int id;
+    private Long id;
     @NotNull(message = "İsim boş bırakılamaz!")
     private String name;
     @NotNull(message = "Telefon NO boş bırakılamaz!")

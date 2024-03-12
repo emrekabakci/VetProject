@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class CursorResponse<T>{
+public class CursorResponse<T> {
     private int pageNumber;
     private int pageSize;
     private Long totalElements;

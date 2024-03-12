@@ -6,7 +6,6 @@ import com.emre.vetproject.core.result.ResultData;
 import com.emre.vetproject.core.utilities.Message;
 import com.emre.vetproject.core.utilities.ResultGen;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -21,7 +20,7 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<Result> handleNotFoundException(NotFoundException e){
+    public ResponseEntity<Result> handleNotFoundException(NotFoundException e) {
         return new ResponseEntity<>(ResultGen.notFoundError(e.getMessage()), HttpStatus.NOT_FOUND);
     }
 
@@ -36,5 +35,10 @@ public class GlobalExceptionHandler {
                 Message.VALIDATION_ERROR,
                 "400", validationErrorList);
         return new ResponseEntity<>(ResultGen.validateError(validationErrorList), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Result> handleValidationErrors(Exception e) {
+        return new ResponseEntity<>(ResultGen.internalServerError(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

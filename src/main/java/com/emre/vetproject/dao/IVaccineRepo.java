@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface IVaccineRepo extends JpaRepository<Vaccine, Integer> {
+public interface IVaccineRepo extends JpaRepository<Vaccine, Long> {
     Page<Vaccine> findVaccinesByAnimal(Animal animal, Pageable pageable);
 
     List<Vaccine> findVaccinesByProtectionFinishDateBetween(LocalDate startDate, LocalDate finishDate);

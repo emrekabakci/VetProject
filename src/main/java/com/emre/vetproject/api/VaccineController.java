@@ -6,16 +6,13 @@ import com.emre.vetproject.core.config.modelMapper.IModelMapperService;
 import com.emre.vetproject.core.result.Result;
 import com.emre.vetproject.core.result.ResultData;
 import com.emre.vetproject.core.utilities.ResultGen;
-import com.emre.vetproject.dto.request.doctor.DoctorSaveRequest;
 import com.emre.vetproject.dto.request.vaccine.VaccineDateSearchRequest;
 import com.emre.vetproject.dto.request.vaccine.VaccineSaveRequest;
 import com.emre.vetproject.dto.request.vaccine.VaccineUpdateRequest;
 import com.emre.vetproject.dto.response.CursorResponse;
 import com.emre.vetproject.dto.response.animal.AnimalResponse;
-import com.emre.vetproject.dto.response.doctor.DoctorResponse;
 import com.emre.vetproject.dto.response.vaccine.VaccineResponse;
 import com.emre.vetproject.model.Animal;
-import com.emre.vetproject.model.Doctor;
 import com.emre.vetproject.model.Vaccine;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -44,14 +41,13 @@ public class VaccineController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResultData<VaccineResponse> save(@PathVariable(name = "animalId") int animalId, @Valid @RequestBody VaccineSaveRequest vaccineSaveRequest) {
         Animal animal = animalService.get(animalId);
-        vaccineService.checkVaccine(animal,vaccineSaveRequest);
+        vaccineService.checkVaccine(animal, vaccineSaveRequest);
         Vaccine saveVaccine = this.modelMapper.forRequest().map(vaccineSaveRequest, Vaccine.class);
         saveVaccine.setAnimal(animal);
         this.vaccineService.save(saveVaccine);
 
         return ResultGen.created(this.modelMapper.forResponse().map(saveVaccine, VaccineResponse.class));
     }
-
 
 
 //    @PostMapping("/animals/{animalId}")

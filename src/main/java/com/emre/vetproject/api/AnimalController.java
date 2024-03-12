@@ -10,7 +10,6 @@ import com.emre.vetproject.dto.request.animal.AnimalSaveRequest;
 import com.emre.vetproject.dto.request.animal.AnimalUpdateRequest;
 import com.emre.vetproject.dto.response.CursorResponse;
 import com.emre.vetproject.dto.response.animal.AnimalResponse;
-import com.emre.vetproject.dto.response.customer.CustomerResponse;
 import com.emre.vetproject.model.Animal;
 import com.emre.vetproject.model.Customer;
 import jakarta.validation.Valid;
@@ -91,8 +90,8 @@ public class AnimalController {
     @ResponseStatus(HttpStatus.OK)
     public ResultData<List<AnimalResponse>> findAnimalsByName(@PathVariable("name") String name) {
         List<Animal> animals = this.animalService.findAnimalsByName(name);
-        List<AnimalResponse> animalResponseList = animals.stream().map(customer -> this.modelMapper.forResponse()
-                        .map(animals, AnimalResponse.class))
+        List<AnimalResponse> animalResponseList = animals.stream().map(animal -> this.modelMapper.forResponse()
+                        .map(animal, AnimalResponse.class))
                 .collect(Collectors.toList());
         return ResultGen.success(animalResponseList);
     }
